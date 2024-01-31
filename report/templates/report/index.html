@@ -1,0 +1,9 @@
+<form action="{%url 'submit' %}" method="POST">
+
+    {% csrf_token %}
+    <label for="symbol">Stock: </label><br>
+    <input type="text" id="symbol" name="stock"><br>
+
+    <input type="submit" value="Retrieve">
+</form>
+
