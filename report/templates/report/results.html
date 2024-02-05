@@ -1,0 +1,29 @@
+{% extends "./base_generic.html" %}
+
+{% block content %}
+    RESULTS
+
+    <table border-style="dotted" border="1px solid black">
+        <thead>
+            <tr>
+                <th>Symbol</th>
+                <th>Num. of Shares</th>
+                <th>Total $ Invested</th>
+                <th>Total $ Gain/Loss</th>
+                <th>Cumulative % Gain/Loss</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for returns in masterDict %}
+            <tr>
+                <td>{{ returns.stockSymbol }}</td>
+                <td>{{ returns.numShares }}</td>
+                <td>{{ returns.totalInvested }}</td>
+                <td>{{ returns.totalGain }}</td>
+                <td>{{ returns.percentGainLose }}%</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

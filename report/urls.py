@@ -14,7 +14,7 @@ urlpatterns = [
 
     #path("<symbol>", views.pullStockData, name="retrieve"),
 
-    path("submit/<symbol>", views.pullStockData, name="submit"),
+    path("submit/<symbol>", views.pullStockData, name="submit1"),
 
-    path("submit/", views.pullStockData1, name="submit"),
+    path("submit/", views.pullStockData1, name="submit2"),
 ]

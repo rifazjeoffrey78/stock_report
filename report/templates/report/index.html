@@ -1,9 +1,47 @@
-<form action="{%url 'submit' %}" method="POST">
+{% extends "./base_generic.html" %}
 
-    {% csrf_token %}
-    <label for="symbol">Stock: </label><br>
-    <input type="text" id="symbol" name="stock"><br>
+{% block content %}
+    <form action="/report/submit/" method="POST">
 
-    <input type="submit" value="Retrieve">
-</form>
+        {% csrf_token %}
+        <table>
+            <tr>
+                <td><label for="symbol">Stock: </label></td>
+                <td><label for="symbol">Num of Shares: </label></td>
+                <td><label for="symbol">Total $ Invested: </label></td>
+            </tr>
+            
+        <tr>
+            <td><input type="text" id="symbol" name="stock" value="TSLA"></td>
+            <td><input type="text" id="numShares" name="numShares" value="100"></td>
+            <td><input type="text" id="totalInvested" name="totalInvested" value="1000"></td>
+        </tr>
+    
+        <tr>
+        <td><input type="text" id="symbol" name="stock" value="MSFT"></td>
+        <td><input type="text" id="numShares" name="numShares" value="200"></td>
+        <td><input type="text" id="totalInvested" name="totalInvested" value="2000"></td>
+        </tr>
+        
+        <tr>
+            <td><input type="text" id="symbol" name="stock" value="NVDA"></td>
+            <td><input type="text" id="numShares" name="numShares" value="300"></td>
+            <td><input type="text" id="totalInvested" name="totalInvested" value="3000"></td>
+        </tr>
+        
+        <tr>
+            <td><input type="text" id="symbol" name="stock" value="NFLX"></td>
+            <td><input type="text" id="numShares" name="numShares" value="400"></td>
+            <td><input type="text" id="totalInvested" name="totalInvested" value="4000"></td>
+        </tr>
+        
+        <tr>
+            <td><input type="text" id="symbol" name="stock" value="CRWD"></td>
+            <td><input type="text" id="numShares" name="numShares" value="500"></td>
+            <td><input type="text" id="totalInvested" name="totalInvested" value="5000"></td>
+        </tr>
 
+        </table>
+        <input type="submit" value="Retrieve">
+    </form>
+{% endblock %}
