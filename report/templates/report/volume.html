@@ -1,0 +1,16 @@
+{% extends "./base_generic.html" %}
+
+{% block content %}
+    <form action="/report/submitVolume/" method="POST">
+
+        {% csrf_token %}
+        
+        <label for="stocksVolume">Stock Symbols(comma separated):</label>
+
+        <textarea id="stocksVolume" name="stocksVolume" rows="4" cols="50">
+        NVDA,MSFT,AMZN,GOOG
+        </textarea>
+
+        <input type="submit" value="volume">
+    </form>
+{% endblock %}

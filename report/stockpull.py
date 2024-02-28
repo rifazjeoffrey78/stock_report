@@ -6,6 +6,54 @@ import pandas as pd
 
 from pandas_datareader import data as pdr
 
+import datetime
+
+import statistics
+
+def retrieveVolumeData(symbols):
+
+    yf.pdr_override()
+
+    print(symbols.split(","))
+
+    today = str(datetime.date.today() + datetime.timedelta(days=1))
+    previousDays = str(datetime.date.today() - datetime.timedelta(days=7))
+
+    masterLst = []
+
+    for col in symbols.split(","):
+        try:
+            col = col.strip()
+            print("------ " + col)
+            vol = pdr.get_data_yahoo(col,start=previousDays,end=today)['Volume'].T
+
+            todaysVolume = vol.iloc[-1]
+            averageExceptTodays = statistics.mean(vol.iloc[:-1])
+
+            isTodaysVolumeGreater = todaysVolume > averageExceptTodays
+
+            print(isTodaysVolumeGreater)
+
+            masterDic = {}
+            masterDic['stockSymbol']   = col
+            
+            if(isTodaysVolumeGreater):
+                masterDic['averageVolumeLastDays']     = format(averageExceptTodays,',d')
+                masterDic['todaysVolume'] = format(todaysVolume,',d')
+            else:
+                masterDic['averageVolumeLastDays']     = '-'
+                masterDic['todaysVolume'] = '-'
+
+            masterLst.append(masterDic)
+
+        except:
+            print("No volume data for - " + col)
+            pass
+
+    print(masterLst)
+
+    return masterLst
+
 def retrieveData(symbolsTotalInvestedDict):
     #mydata = nasdaqdatalink.get("WIKI/" + symbol, start_date="2018-01-30", end_date="2018-01-31")
 

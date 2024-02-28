@@ -12,9 +12,27 @@ def index(request):
     print(request.POST)
     return render(request, "report/index.html")
 
+def volume(request):
+    print(request.POST)
+    return render(request, "report/volume.html")
+
 def pullStockData(request, symbol):
     output = "APPLE data loading"
     return HttpResponse(output)
+
+def pullStockDataVolume(request):
+
+    print("---------------")
+    print(request.POST.get('stocksVolume'))
+    print("---------------")
+
+    stocks = request.POST.get('stocksVolume')
+
+    df = stockpull.retrieveVolumeData(stocks)
+    
+    context = {"masterDict" : df}
+
+    return render(request,"report/resultsVolume.html", context)
 
 def pullStockData1(request):
     output = "NVDA data loading"

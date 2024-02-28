@@ -1,0 +1,25 @@
+{% extends "./base_generic.html" %}
+
+{% block content %}
+    RESULTS
+
+    <table border-style="dotted" border="1px solid black">
+        <thead>
+            <tr>
+                <th>Symbol</th>
+                <th>Todays Volume</th>
+                <th>Average Volume(past X days)</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for returns in masterDict %}
+            <tr>
+                <td>{{ returns.stockSymbol }}</td>
+                <td>{{ returns.averageVolumeLastDays }}</td>
+                <td>{{ returns.todaysVolume }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}
